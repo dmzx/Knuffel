@@ -1,0 +1,37 @@
+imports:
+    - { resource: 'tables.yml' }
+services:
+    dmzx.knuffel.listener:
+        class: 'dmzx\knuffel\event\listener'
+        arguments:
+            - '@template'
+            - '@controller.helper'
+        tags:
+            - { name: event.listener }
+    dmzx.knuffel.controller:
+        class: 'dmzx\knuffel\controller\main'
+        arguments:
+            - '@template'
+            - '@user'
+            - '@auth'
+            - '@dbal.conn'
+            - '@request'
+            - '@config'
+            - '@controller.helper'
+            - '@pagination'
+            - '@ext.manager'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%dmzx.knuffel.table.knuffel%'
+            - '%dmzx.knuffel.table.knuffel.config%'
+    dmzx.knuffel.admin.controller:
+        class: 'dmzx\knuffel\controller\admin_controller'
+        arguments:
+            - '@config'
+            - '@template'
+            - '@log'
+            - '@user'
+            - '@request'
+            - '@dbal.conn'
+            - '%dmzx.knuffel.table.knuffel%'
+            - '%dmzx.knuffel.table.knuffel.config%'           

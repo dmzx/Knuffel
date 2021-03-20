@@ -1,0 +1,48 @@
+{% INCLUDE 'overall_header.html' %}
+
+<a name="maincontent"></a>
+
+<h1>{{ lang('ACP_KNUFFEL') }}</h1>
+
+<p><img src="https://img.shields.io/badge/{{ lang('Version') }}-{{ KNUFFEL_VERSION }}-green.svg?style=plastic" /></p>
+
+<form id="action_knuffel_settings_form" method="post" action="{{ U_ACTION }}" enctype="multipart/form-data" >
+	<fieldset>
+		<legend>{{ lang('ACP_KNUFFEL_SETTINGS') }}</legend>
+		<dl>
+			<dt><label>{{ lang('KNUFFEL_ENABLE') }}</label><br /><span>{{ lang('KNUFFEL_ENABLE_EXPLAIN') }}</span></dt>
+			<dd><label><input type="radio" class="radio" name="knuffel_enable" value="1"{% if KNUFFEL_ENABLE %} id="knuffel_enable" checked="checked" {% endif %} /> {{ lang('YES') }}</label>
+			<label><input type="radio" class="radio" name="knuffel_enable" value="0"{% if not KNUFFEL_ENABLE %} id="knuffel_enable" checked="checked" {% endif %} /> {{ lang('NO') }}</label></dd>
+		</dl>
+		<dl>
+			<dt><label for="knuffel_pagination">{{ lang('KNUFFEL_PAGINATION') }}</label><br /><span>{{ lang('KNUFFEL_PAGINATION_EXPLAIN') }}</span></dt>
+			<dd><input class="post" type="text" maxlength="3" size="10" name="knuffel_pagination" value="{{ KNUFFEL_PAGINATION }}" /></dd>
+		</dl>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="action_knuffel_settings" name="action_knuffel_settings" value="{{ lang('SUBMIT') }}" />&nbsp;
+			<input class="button2" name="reset" value="{{ lang('RESET') }}" type="reset" />
+		</p>
+	</fieldset>
+</form>
+
+<p>{{ lang('KNUFFEL_TITLE_EXPLAIN') }}</p>
+
+<div class="errorbox">{{ lang('KNUFFEL_DELETE_ATTENTION') }}</div>
+
+<fieldset>
+	<legend>{{ lang('KNUFFEL_HIGHSCORE_DELETE') }}</legend>
+	<form id="delete_knuffel_highscores_form" method="post" action="{{ S_ACTION }}">
+		<dl>
+			<dt><label for="delete_knuffel_highscores">{{ lang('KNUFFEL_DELETE') }}</label><br /><span>{{ lang('KNUFFEL_DELETE_EXPLAIN') }}</span></dt>
+			<dd><input type="hidden" name="delete" value="knuffel_highscore" /><input class="button2" type="submit" id="delete_knuffel_highscores" name="delete" value="{{ lang('KNUFFEL_DELETE_BUTTON') }}" /></dd>
+		</dl>
+	</form>
+	<form id="delete_all_knuffel_highscores_form" method="post" action="{{ S_ACTION }}">
+		<dl>
+			<dt><label for="delete_all_knuffel_highscores">{{ lang('KNUFFEL_DELETE_ALL') }}</label><br /><span>{{ lang('KNUFFEL_DELETE_ALL_EXPLAIN') }}</span></dt>
+			<dd><input type="hidden" name="deleteall" value="knuffel_highscore" /><input class="button2" type="submit" id="delete_all_knuffel_highscores" name="deleteall" value="{{ lang('KNUFFEL_DELETE_BUTTON') }}" /></dd>
+		</dl>
+	</form>
+</fieldset>
+
+{% INCLUDE 'overall_footer.html' %}

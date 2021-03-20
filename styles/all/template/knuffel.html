@@ -1,0 +1,510 @@
+{% INCLUDE 'overall_header.html' %}
+
+{% if S_KNUFFEL %}
+<h2>{{ lang('KNUFFEL') }}</h2>
+
+<div style="float: left; width: 19%; margin-right: 3px;">
+	<div class="forabg">
+		<div class="inner">
+			<ul class="topiclist">
+				<li class="header">
+					<dl>
+						<dd>{{ lang('KNUFFEL_LINKS') }}</dd>
+					</dl>
+				</li>
+			</ul>
+			<ul class="topiclist forums" style="padding: 5px">
+				<li><i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;<a href="{{ U_KNUFFEL_PLAY }}" title="{{ lang('KNUFFEL') }}">{{ lang('KNUFFEL_PLAY') }}</a></li>
+				<li><i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;<a href="{{ U_KNUFFEL_USERGUIDE }}" title="{{ lang('KNU_USERGUIDE') }}">{{ lang('KNU_USERGUIDE') }}</a></li>
+				<li><i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;<a href="{{ U_KNUFFEL_HIGHSCORE }}" title="{{ lang('KNUFFEL_RANK') }}">{{ lang('KNUFFEL_RANK') }}</a></li>
+			</ul>
+		</div>
+	</div>
+	<br style="clear:both" />
+
+	<div class="forabg">
+		<div class="inner">
+			<ul class="topiclist">
+				<li class="header">
+					<dl>
+						<dd>{{ lang('TOP_3') }}</dd>
+					</dl>
+				</li>
+			</ul>
+			<ul class="topiclist forums" style="padding: 10px">
+				<li>
+					<table border="0" cellpadding="0" cellspacing="0">
+						{% for highscore in loops.highscore %}
+						<tr>
+							<td style="text-align: center; width: 15%;">{{ highscore.POSITION }}</td>
+							<td style="text-align: center; width: 70%;">{{ highscore.POINTS }}</td>
+							<td style="text-align: center; width: 15%;">{{ highscore.NAME }}</td>
+						</tr>
+						{% else %}
+						<tr>
+							<td align="center">{{ lang('KNUFFEL_NO_HIGHSCORES') }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div style="float: right; width: 80%; margin-top: 0px;">
+	<div class="forabg">
+		<div class="inner">
+			<ul class="topiclist">
+				<li class="header">
+					<dl>
+						<dd>{{ lang('KNUFFEL') }}</dd>
+					</dl>
+				</li>
+			</ul>
+			<ul class="topiclist forums">
+				<li>
+					<dl>
+						<dd style="width: 100%; text-align: center;"><img src='{{ BOARD_URL }}ext/dmzx/knuffel/knuffel/images/dice/dice.gif' alt='*' /></dd>
+					</dl>
+					<dl>
+						<dd style="width: 100%; text-align: center;"><span style="padding: 20px;">{{ lang('KNU_USERGUIDE_GENERAL_2') }}</span></dd>
+						<dd style="width: 100%; text-align: center;">{{ lang('KNUFFEL_UPS_USERGUIDE') }} <a href="{{ U_KNUFFEL_USERGUIDE }}">{{ lang('KNU_USERGUIDE') }}</a></dd>
+						<dd style="width: 100%; text-align: center;"><span style="padding: 20px;"><input class="button1" type="button" onclick="window.location.href='{{ U_KNUFFEL_PLAY }}'" value="{{ lang('KNUFFEL_PLAY') }}" /></span></dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<p style="clear:both;" />
+{% endif %}
+
+{% if S_KNUFFEL_PLAY %}
+<h2>{{ lang('KNUFFEL') }}</h2>
+
+<form id="knuffelform" action="" method="post">
+	<div style="float: right; width: 70%; margin-top: 0px;">
+		<div class="forabg">
+			<div class="inner">
+				<ul class="topiclist">
+					<li class="header">
+						<dl>
+							<dd>{{ lang('KNUFFEL_SCOREBOARD') }}</dd>
+						</dl>
+					</li>
+				</ul>
+				<ul class="topiclist forums" style="padding: 10px">
+					<li>
+						<table width="500px" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td></td>
+								<td></td>
+								<td><h3>{{ lang('X1') }}</h3></td>
+								<td></td>
+								<td><h3>{{ lang('X2') }}</h3></td>
+								<td></td>
+								<td><h3>{{ lang('X3') }}</h3></td>
+							</tr>
+							<tr>
+								<td>{{ lang('ONE') }}</td>
+								<td>{{ S_0 }}</td>
+								<td>{{ S_FIELD_0 }}</td>
+								<td>{{ S_100 }}</td>
+								<td>{{ S_FIELD_100 }}</td>
+								<td>{{ S_200 }}</td>
+								<td>{{ S_FIELD_200 }}</td>
+							</tr>
+							<tr>
+								<td>{{ lang('TWO') }}</td>
+								<td>{{ S_1 }}</td>
+								<td>{{ S_FIELD_1 }}</td>
+								<td>{{ S_101 }}</td>
+								<td>{{ S_FIELD_101 }}</td>
+								<td>{{ S_201 }}</td>
+								<td>{{ S_FIELD_201 }}</td>
+							</tr>
+							<tr>
+								<td>{{ lang('THREE') }}</td>
+								<td>{{ S_2 }}</td>
+								<td>{{ S_FIELD_2 }}</td>
+								<td>{{ S_102 }}</td>
+								<td>{{ S_FIELD_102 }}</td>
+								<td>{{ S_202 }}</td>
+								<td>{{ S_FIELD_202 }}</td>
+							</tr>
+							<tr>
+								<td>{{ lang('FOUR') }}</td>
+								<td>{{ S_3 }}</td>
+								<td>{{ S_FIELD_3 }}</td>
+								<td>{{ S_103 }}</td>
+								<td>{{ S_FIELD_103 }}</td>
+								<td>{{ S_203 }}</td>
+								<td>{{ S_FIELD_203 }}</td>
+							</tr>
+							<tr>
+								<td>{{ lang('FIVE') }}</td>
+								<td>{{ S_4 }}</td>
+								<td>{{ S_FIELD_4 }}</td>
+								<td>{{ S_104 }}</td>
+								<td>{{ S_FIELD_104 }}</td>
+								<td>{{ S_204 }}</td>
+								<td>{{ S_FIELD_204 }}</td>
+							</tr>
+							<tr>
+								<td>{{ lang('SIX') }}</td>
+								<td>{{ S_5 }}</td>
+								<td>{{ S_FIELD_5 }}</td>
+								<td>{{ S_105 }}</td>
+								<td>{{ S_FIELD_105 }}</td>
+								<td>{{ S_205 }}</td>
+								<td>{{ S_FIELD_205 }}</td>
+							</tr>
+							<tr>
+								<td align="left"><b>{{ lang('SUM1') }}</b></td>
+								<td></td>
+								<td>{{ S_SUM1 }}</td>
+								<td></td>
+								<td>{{ S_SUM2 }}</td>
+								<td></td>
+								<td>{{ S_SUM3 }}</td>
+							</tr>
+							<tr>
+								<td align="left">{{ lang('BONUS') }}</td>
+								<td></td>
+								<td>{{ S_BONUS1 }}</td>
+								<td></td>
+								<td>{{ S_BONUS2 }}</td>
+								<td></td>
+								<td>{{ S_BONUS3 }}</td>
+							</tr>
+							<tr>
+								<td align="left"><b>{{ lang('SUMTOP') }}</b></td>
+								<td></td>
+								<td>{{ S_SUMTOP1 }}</td>
+								<td></td>
+								<td>{{ S_SUMTOP2 }}</td>
+								<td></td>
+								<td>{{ S_SUMTOP3 }}</td>
+							</tr>
+							<tr>
+								<td></td>
+							</tr>
+							<tr>
+								<td>{{ lang('TOAK') }}</td>
+								<td>{{ S_6 }}</td>
+								<td>{{ S_FIELD_6 }}</td>
+								<td>{{ S_106 }}</td>
+								<td>{{ S_FIELD_106 }}</td>
+								<td>{{ S_206 }}</td>
+								<td>{{ S_FIELD_206 }}</td>
+							</tr>
+							<tr>
+								<td>{{ lang('FOAK') }}</td>
+								<td>{{ S_7 }}</td>
+								<td>{{ S_FIELD_7 }}</td>
+								<td>{{ S_107 }}</td>
+								<td>{{ S_FIELD_107 }}</td>
+								<td>{{ S_207 }}</td>
+								<td>{{ S_FIELD_207 }}</td>
+							</tr>
+							<tr>
+								<td>{{ lang('FH') }}</td>
+								<td>{{ S_8 }}</td>
+								<td>{{ S_FIELD_8 }}</td>
+								<td>{{ S_108 }}</td>
+								<td>{{ S_FIELD_108 }}</td>
+								<td>{{ S_208 }}</td>
+								<td>{{ S_FIELD_208 }}</td>
+							</tr>
+							<tr>
+								<td>{{ lang('SMALL') }}</td>
+								<td>{{ S_9 }}</td>
+								<td>{{ S_FIELD_9 }}</td>
+								<td>{{ S_109 }}</td>
+								<td>{{ S_FIELD_109 }}</td>
+								<td>{{ S_209 }}</td>
+								<td>{{ S_FIELD_209 }}</td>
+							</tr>
+							<tr>
+								<td>{{ lang('LARGE') }}</td>
+								<td>{{ S_10 }}</td>
+								<td>{{ S_FIELD_10 }}</td>
+								<td>{{ S_110 }}</td>
+								<td>{{ S_FIELD_110 }}</td>
+								<td>{{ S_210 }}</td>
+								<td >{{ S_FIELD_210 }}</td>
+							</tr>
+							<tr>
+								<td>{{ lang('KNUFFEL') }}</td>
+								<td>{{ S_11 }}</td>
+								<td>{{ S_FIELD_11 }}</td>
+								<td>{{ S_111 }}</td>
+								<td>{{ S_FIELD_111 }}</td>
+								<td>{{ S_211 }}</td>
+								<td>{{ S_FIELD_211 }}</td>
+							</tr>
+							<tr>
+								<td>{{ lang('CHANCE') }}</td>
+								<td>{{ S_12 }}</td>
+								<td>{{ S_FIELD_12 }}</td>
+								<td>{{ S_112 }}</td>
+								<td>{{ S_FIELD_112 }}</td>
+								<td>{{ S_212 }}</td>
+								<td>{{ S_FIELD_212 }}</td>
+							</tr>
+							<tr>
+								<td align="left"><b>{{ lang('SUM2') }}</b></td>
+								<td></td>
+								<td>{{ S_SUMLOW1 }}</td>
+								<td></td>
+								<td>{{ S_SUMLOW2 }}</td>
+								<td></td>
+								<td>{{ S_SUMLOW3 }}</td>
+							</tr>
+							<tr>
+								<td align="left"><b>{{ lang('UPPERSUM') }}</b></td>
+								<td></td>
+								<td>{{ S_UPPERSUM1 }}</td>
+								<td></td>
+								<td>{{ S_UPPERSUM2 }}</td>
+								<td></td>
+								<td>{{ S_UPPERSUM3 }}</td>
+							</tr>
+							<tr>
+								<td align="left"><b>{{ lang('SUM') }}</b></td>
+								<td></td>
+								<td>{{ S_SUMCOMPLETE1 }}</td>
+								<td></td>
+								<td>{{ S_SUMCOMPLETE2 }}</td>
+								<td></td>
+								<td>{{ S_SUMCOMPLETE3 }}</td>
+							</tr>
+							<tr>
+								<td align="left"><b>{{ lang('COLUMNSUM') }}</b></td>
+								<td>{{ lang('X1B') }}</td>
+								<td>{{ S_SUMFACTOR1 }}</td>
+								<td>{{ lang('X2B') }}</td>
+								<td>{{ S_SUMFACTOR2 }}</td>
+								<td>{{ lang('X3B') }}</td>
+								<td>{{ S_SUMFACTOR3 }}</td>
+							</tr>
+							<tr>
+								<td colspan="7" align="center"><h3><b>{{ lang('FINALSUM') }}</b>&nbsp;{{ S_FINALSUM }}</h3></td>
+							</tr>
+						</table>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<td valign="top">
+		<div style="float: left; width: 29%; margin-right: 3px;">
+			<div class="forabg">
+				<div class="inner">
+					<ul class="topiclist">
+						<li class="header">
+							<dl>
+								<dd>{{ lang('DICE') }}</dd>
+							</dl>
+						</li>
+					</ul>
+					<ul class="topiclist forums" style="padding: 10px">
+						<li>
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td align="center" colspan="5"><br/>{{ S_KNUFFELMESSAGE }}<br/></td>
+								</tr>
+								<tr>
+									<td align="center">{{ S_DICE_ONE }}</td>
+									<td align="center">{{ S_DICE_TWO }}</td>
+									<td align="center">{{ S_DICE_THREE }}</td>
+									<td align="center">{{ S_DICE_FOUR }}</td>
+									<td align="center">{{ S_DICE_FIVE }}</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle" colspan="5">{{ S_LOGIC }}<br />{{ S_ROLL }}<br />{{ S_SUBMIT }}<br />{{ S_UNDO }}<br /></td>
+								</tr>
+							</table>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</td>
+		<br style="clear:both" />
+		<td align="center" valign="top">
+			<div class="forabg">
+				<div class="inner">
+					<ul class="topiclist">
+						<li class="header">
+							<dl>
+								<dd>{{ lang('TOP_3') }}</dd>
+							</dl>
+						</li>
+					</ul>
+					<ul class="topiclist forums" style="padding: 20px">
+						<li>
+							<table width="200px" border="0" cellpadding="0" cellspacing="0">
+								{% for highscore in loops.highscore %}
+								<tr>
+									<td style="text-align: center; width: 15%;">{{ highscore.POSITION }}</td>
+									<td style="text-align: center; width: 70%;">{{ highscore.POINTS }}</td>
+									<td style="text-align: center; width: 15%;">{{ highscore.NAME }}</td>
+								</tr>
+								{% else %}
+								<tr>
+									<td align="center">{{ lang('KNUFFEL_NO_HIGHSCORES') }}</td>
+								</tr>
+								{% endfor %}
+							</table>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</td>
+		<br style="clear:both" />
+		<td align="center" valign="bottom">
+			<div class="forabg">
+				<div class="inner">
+					<ul class="topiclist">
+						<li class="header">
+							<dl>
+								<dd>{{ lang('RESET') }}</dd>
+							</dl>
+						</li>
+					</ul>
+					<ul class="topiclist forums">
+						<li>
+							<dl>
+								<dd style="width: 100%; text-align: center;"><span style="padding: 2px;"><br /><input class="button1" type="button" onclick="window.location.href='{{ U_KNUFFEL_PLAY }}'" value="{{ lang('KNU_BUTTON_RESET_GAME') }}" /><br /><br /></span></dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</td>
+</form>
+{% endif %}
+
+{% if S_KNUFFEL_USERGUIDE %}
+<h2>{{ lang('KNU_USERGUIDE') }}</h2>
+
+<div class="forabg">
+	<div class="inner">
+		<ul class="topiclist">
+			<li class="header">
+				<dl>
+					<dt>{{ lang('KNU_USERGUIDE') }}</dt>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist forums" style="padding: 10px">
+			<li>
+				<h3>{{ lang('KNU_USERGUIDE_GENERAL_1') }}</h3>
+				{{ lang('KNU_USERGUIDE_GENERAL_2') }}
+				<h3>{{ lang('KNU_USERGUIDE_POINTS_1') }}</h3>
+				{{ lang('KNU_USERGUIDE_POINTS_2') }}
+				<h3>{{ lang('KNU_USERGUIDE_COLUMNS_1') }}</h3>
+				{{ lang('KNU_USERGUIDE_COLUMNS_2') }}
+			</li>
+		</ul>
+	</div>
+</div>
+{% endif %}
+
+{% if S_KNUFFEL_HIGHSCORE %}
+<h2>{{ lang('KNUFFEL_RANK') }}</h2>
+
+<p style="clear:both;" />
+
+<div class="forabg" style="margin-top: 3px;">
+	<div class="inner">
+		<table class="table1" cellspacing="1">
+			<thead>
+				<tr>
+					<th align="center" colspan="2">{{ lang('KNUFFEL_POSITION') }}</th>
+					<th align="left">{{ lang('KNUFFEL_HIGHSCORE_NAME') }}</th>
+					<th align="center">{{ lang('KNUFFEL_HIGHSCORE') }}</th>
+					<th align="center">{{ lang('KNUFFEL_HIGHSCORETIME') }}</th>
+					<th align="center">{{ lang('KNUFFEL_PLAYED') }}</th>
+					<th align="center">{{ lang('KNUFFEL_AVERAGE') }}</th>
+					<th align="center">{{ lang('KNUFFEL_ALLTIME') }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for highscore in loops.highscore %}
+				{% if highscore.S_ROW_COUNT is even %}<tr class="bg1">{% else %}<tr class="bg2">{% endif %}
+					<td align="center">{{ highscore.POSITION }}</td>
+					<td align="left" colspan="2">{{ highscore.NAME }}</td>
+					<td align="center">{{ highscore.POINTS }}</td>
+					<td align="center">{{ highscore.SCORE_TIME }}</td>
+					<td align="center">{{ highscore.PLAYED }}</td>
+					<td align="center">{{ highscore.AVERAGE }}</td>
+					<td align="center">{{ highscore.ALLTIME }}</td>
+				</tr>
+				{% else %}
+				<tr>
+				<td class="bg1" colspan="{% if S_CLEAR_ALLOWED %}9{% else %}8{% endif %}" align="center"><span class="gen">{{ lang('KNUFFEL_NO_HIGHSCORES') }}</span></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<form action="{{ S_KNUFFEL_ACTION }}" method="post">
+	<fieldset class="display-options">
+		<label>{{ lang('SORT_BY') }} {{ S_SELECT_SORT_KEY }}</label>
+		<label>{{ S_SELECT_SORT_DIR }} <input type="submit" name="sort" value="{{ lang('GO') }}" class="button2" /></label>
+	</fieldset>
+</form>
+<div class="action-bar bottom">
+	{% if loops.pagination|length or TOTAL_PLAYERS %}
+	<div class="pagination">
+		{{ TOTAL_PLAYERS }}
+		{% if loops.pagination|length %}
+		{% INCLUDE 'pagination.html' %}
+		{% else %}
+		&bull; {{ PAGE_NUMBER }}
+		{% endif %}
+	</div>
+	{% endif %}
+</div>
+
+<p style="clear:both;" />
+
+{% endif %}
+
+{% if S_SCORE %}
+<h2>{{ lang('KNUFFEL') }}</h2>
+
+<div class="forumbg">
+	<div class="inner">
+		<table class="table1">
+			<thead>
+				<tr>
+					<th colspan="6"><strong>{{ lang('RESULT') }}</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="bg3" align="center" colspan="5" valign="middle"><br/>{{ lang('KNUFFEL_ACTUAL_RESULT') }}<b>&nbsp;{{ S_ACTUAL_RESULT }}</b><br/><br/></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="navbar">
+	<div class="inner">
+		<ul class="linklist">
+			<li class="small-icon icon-home"><a href="{{ U_KNUFFEL }}">{{ lang('KNUFFEL_PLAY_AGAIN') }}</a></li>
+			<li class="small-icon icon-home"><a href="{{ U_KNUFFEL_HIGHSCORE }}">{{ lang('KNUFFEL_RANK') }}</a></li>
+		</ul>
+	</div>
+</div>
+{% endif %}
+
+{% INCLUDE 'overall_footer.html' %}

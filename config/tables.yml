@@ -1,0 +1,3 @@
+parameters:
+    dmzx.knuffel.table.knuffel: '%core.table_prefix%knuffel'
+    dmzx.knuffel.table.knuffel.config: '%core.table_prefix%knuffel_config'
